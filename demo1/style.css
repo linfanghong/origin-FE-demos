@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* 这里可以防止浏览器调整页面大小出现重复的背景图片 */
+  min-height: 100vh;
+  /* background-image: url("./bg.jpg"); */
+  /* 浏览器调整大小 背景图片始终显示最中间的部分 */
+  /* background-position: center; */
+  /* background-size: cover; */
+  background-color: #000;
+}
+
+.container {
+  width: 200px;
+  border-radius: 8px;
+  background-color: #FFF;
+  text-align: center;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 10%), 0 0 20px 0 rgb(0 0 0 / 20%);
+  /* 这个是倒影效果 */
+  -webkit-box-reflect: below 1px linear-gradient(transparent, transparent, #0004);
+  /* 这个可以让border-radius符合预期 */
+  overflow: hidden;
+}
+
+.container .month {
+  padding: 5px 10px;
+  background-color: #ff6331;
+  font-size: 30px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.container .weekday {
+  margin-top: 20px;
+  /* line-height: 1em; */
+  font-size: 20px;
+  font-weight: 300;
+  color: #999;
+}
+
+.container .day {
+  margin-top: 0px;
+  line-height: 1em;
+  font-size: 80px;
+  font-weight: 700;
+  color: #333;
+}
+
+.container .year {
+  margin-bottom: 20px;
+  /* line-height: 1em; */
+  font-size: 20px;
+  font-weight: 500;
+  color: #999;
+}
+

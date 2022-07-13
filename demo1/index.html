@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <heade>
+    <meta charset="UTF-8">
+    <title>日历小练习</title>
+    <link rel="stylesheet" href="./style.css">
+  </heade>
+  <body>
+    <div class="container">
+      <div class="month"></div>
+      <div class="weekday"></div>
+      <div class="day"></div>
+      <div class="year"></div>
+    </div>
+    <script>
+      const lang = navigator.language
+      const date = new Date()
+      document.getElementsByClassName("month")[0].innerHTML = date.toLocaleString(lang, {month: 'long'})
+      document.getElementsByClassName("weekday")[0].innerHTML = date.toLocaleString(lang, {weekday: "long"})
+      document.getElementsByClassName("day")[0].innerHTML = date.getDate()
+      document.getElementsByClassName("year")[0].innerHTML = date.getFullYear()
+    </script>
+  </body>
+</html>
