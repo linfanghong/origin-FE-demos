@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+    <title>按钮</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .f {
+            position: relative;
+            width: 120px;
+            height: 46px;
+            line-height: 46px;
+            text-align: center;
+            outline: none;
+            margin: 120px 0 0 300px;
+            font-size: 16px;
+            color: hotpink;
+            background-color: #cccccc;
+            border-radius: 46px;
+        }
+
+        @keyframes createCircle {
+            from {
+                width: 0;
+                height: 0;
+                background-color: rgba(255, 255, 255, .5);
+            }
+
+            to {
+                width: 400px;
+                height: 400px;
+                background-color: rgba(255, 255, 255, 0);
+            }
+        }
+
+        .btnS {
+            position: absolute;
+            border-radius: 50%;
+            transform: translate(-50%,-50%);
+            -moz-animation: createCircle 0.8s linear;
+            -o-animation: createCircle 0.8s linear;
+            -webkit-animation: createCircle 0.8s linear;
+            animation: createCircle 0.8s linear;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div class="f">点我</div>
+    <script>
+        var ipt = document.querySelector('div');
+        var flag = true;
+        function createCircle(left, top, callback,maxWH) {
+            if (!flag) {
+                return
+            }
+            let div = document.createElement('div');
+            div.classList.add('btnS');
+            div.style.width = maxWH + 'px';
+            div.style.height = maxWH + 'px';
+            div.style.left = left + 'px';
+            div.style.top = top + 'px';
+            ipt.appendChild(div);
+            callback && callback();
+        }
+        function removeBtnS() {
+            flag = false;
+            let div = document.querySelector('.btnS');
+            div.addEventListener('animationend', function () {
+                ipt.removeChild(div);
+                flag = true;
+            })
+        }
+        ipt.addEventListener('click', function (event) {
+            console.log(1)
+            //点击的时候 拿到鼠标在按钮中的坐标  1，拿到该按钮的坐标 2.拿到鼠标的坐标 3.鼠标的坐标减去按钮的坐标即可
+            // ipt的宽高的最大值
+            let iptW = ipt.offsetWidth;
+            let iptH = ipt.offsetHeight;
+            let maxWH = iptW > iptH ? iptW : iptH;
+            maxWH = maxWH * 2; 
+            // ipt的坐标 
+            let iptX = ipt.offsetLeft;
+            let iptY = ipt.offsetTop;
+            // 鼠标的坐标
+            let mouseX = event.pageX;
+            let mouseY = event.pageY;
+            // 然后以此为中心， 生成圆
+            let centerX = mouseX - iptX;
+            let centerY = mouseY - iptY;
+            // 半径就是按钮的宽度 
+            createCircle(centerX, centerY, removeBtnS,maxWH);
+        })
+    </script>
+</body>
+
+</html>
